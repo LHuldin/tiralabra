@@ -1,6 +1,6 @@
 # Määrittelydokumentti
 
-Tietojenkäsittelytieteen kandiohjelman aineopintojen harjoitustyö: Algoritmit ja tekoäly -kurssin harjoitustyön määrittelydokumentti.
+Tämä dokumentti on Helsingin Yliopiston Tietojenkäsittelytieteen kandiohjelman aineopintojen harjoitustyö: Algoritmit ja tekoäly -kurssin harjoitustyön määrittelydokumentti.
 
 ## Aihe
 
@@ -18,3 +18,10 @@ Luolaston osien (huoneiden) keskinäiseen sijoittumiseen käytetään delaunay t
 ## Ohjelman ja dokumentaation kieli
 
 Ohjelman koodi ja muuttujat ovat englanniksi mutta koodin kommentointi sekä muu dokumentaatio ovat suomeksi.
+
+
+## Lähteet
+
+[Wikipedia: Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
+
+[Wikipedia: Bowyer–Watson algorithm](https://en.wikipedia.org/wiki/Bowyer–Watson_algorithm)
