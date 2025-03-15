@@ -23,7 +23,7 @@ Ohjelma tulee Bowyer–Watson algoritmin lisäksi todennäköisesti hyödyntäm�
 
 ## Ohjelman ja dokumentaation kieli
 
-Ohjelman koodi ja muuttujat ovat englanniksi mutta koodin kommentointi sekä muu dokumentaatio ovat suomeksi.
+Ohjelman koodi ja muuttujat ovat englanniksi mutta koodin kommentointi sekä muu projektin dokumentaatio ovat suomeksi.
 
 
 ## Lähteet
