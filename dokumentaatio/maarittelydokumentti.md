@@ -4,6 +4,9 @@ Tietojenkäsittelytieteen kandiohjelman aineopintojen harjoitustyö: Algoritmit 
 
 ## Aihe
 
+Harjoitustyön aiheena luolastojen generointi.
+Aiheen varsinaninen ydin algoritmi joka luo luolaston ja niiden väliset yhteydet.
+
 ## Ohjelmointikieli
 
 Ohjelma toteutetaan käyttäen Pythonia.
