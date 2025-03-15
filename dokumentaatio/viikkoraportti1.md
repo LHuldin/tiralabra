@@ -1,6 +1,11 @@
 # Viikko 1
 
-Tällä viikolla olen lähinnä tutustunut aihe ehdotuksiin, joista valitsin omaksi aiheekseni valitsin luolastojen generoinnin. Olen myös pyrkinyt perehtymään aiheeseen liittyviin algoritmeihin. Suoritin myös Gitin alustus toimet ja erityisesti jouduin käyttämään aikaa riippuvuuksienhallintaan käytetyn Poetryn päivittämiseen, joka lopulta onnistui vasta uudelleen asennuksen jälkeen. Materiaaleihin tutustuessa olen myös huomannut, että koska edellisestä algorimeihin liittyvästä kurssista on lähes 5 vuotta aikaa, joudun todennäköisesti käyttämään aiottua enemmän aikaa algoritmien toteutukseen.
+Tällä viikolla olen lähinnä tutustunut aihe ehdotuksiin, joista valitsin omaksi aiheekseni valitsin luolastojen generoinnin. 
+Olen myös pyrkinyt perehtymään aiheeseen liittyviin algoritmeihin. 
+
+Suoritin myös Gitin alustus toimet ja erityisesti jouduin käyttämään aikaa riippuvuuksienhallintaan käytetyn Poetryn päivittämiseen, joka lopulta onnistui vasta uudelleen asennuksen jälkeen. 
+
+Materiaaleihin tutustuessa olen myös huomannut, että koska edellisestä algorimeihin liittyvästä kurssista on lähes 5 vuotta aikaa, joudun todennäköisesti käyttämään aiottua enemmän aikaa algoritmien toteutukseen.
 
 ## Tuntikirjanpito
 
