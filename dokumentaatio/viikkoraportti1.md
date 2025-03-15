@@ -19,5 +19,5 @@ Ohjelman laajuus ja sen käyttöliittymä ovat asioita joihin tarvitsen ehkä ko
 | 11.3.  | 2 h            | Aihe vaihtoehtojen läpikäymistä |
 | 12.3.  | 4 h            | Aloitusluento sekä aihe vaihtoehtojen läpikäymistä |
 | 13.3.  | 3 h            | algoritmeihin perehtymistä ja Poetryn päivitys |
-| 15.3.  | 4 h            | Git projektin alustus, viikkoraportti 1, määrittelydokumentti |
+| 15.3.  | 4 h            | Git projektin alustus, Labtool rekisteröinti, viikkoraportti 1, määrittelydokumentti |
 | Yhteensä | 13 h         |        |
