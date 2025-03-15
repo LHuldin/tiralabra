@@ -13,7 +13,7 @@ Ohjelma toteutetaan käyttäen Pythonia. Riippuvuuksien hallinta toteutetaan Poe
 
 ## Algoritmit
 
-Luolaston osien (huoneiden) keskinäiseen sijoittumiseen käytetään delaunay triangulaatioiden laskemiseen käytettävää algoritmiä kuten Bowyer–Watson algoritmiä. Kyseisen algoritmin aikavaatimukset ovat tutkimieni lähteiden mukaan pahimmassa tapauksessa O(n²) ja parhaimmassa tapauksessa O(n) mutta pääasiassa aikavaatimuksen ollessa O(n log n).
+Luolaston osien (huoneiden) keskinäiseen sijoittumiseen käytetään delaunay triangulaatioiden laskemiseen käytettävää algoritmiä kuten Bowyer–Watson algoritmiä. Kyseisen algoritmin aikavaatimukset ovat tutkimieni lähteiden mukaan pahimmassa tapauksessa O(n²) mutta pääasiassa aikavaatimuksen ollessa O(n log n).
 
 ## Ohjelman ja dokumentaation kieli
 
@@ -25,3 +25,5 @@ Ohjelman koodi ja muuttujat ovat englanniksi mutta koodin kommentointi sekä muu
 [Wikipedia: Delaunay triangulation](https://en.wikipedia.org/wiki/Delaunay_triangulation)
 
 [Wikipedia: Bowyer–Watson algorithm](https://en.wikipedia.org/wiki/Bowyer–Watson_algorithm)
+
+[Vazgriz.com: Procedurally Generated Dungeons](https://vazgriz.com/119/procedurally-generated-dungeons/))
