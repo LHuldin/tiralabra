@@ -7,6 +7,11 @@ Suoritin myös Gitin alustus toimet ja erityisesti jouduin käyttämään aikaa 
 
 Materiaaleihin tutustuessa olen myös huomannut, että koska edellisestä algorimeihin liittyvästä kurssista on lähes 5 vuotta aikaa, joudun todennäköisesti käyttämään aiottua enemmän aikaa algoritmien toteutukseen.
 
+Ohjelmointia en ole vielä kerennyt aloittamaan ja luonnos ohjelman rakenteesta on vielä hyvin karkealla tasolla. Ohjelman käyttöliittymä on myös vielä mietinnän alla, koska ohjelmointikielenä on python, mahdollisesti pygame mutta muutkin vaihtoehdot mietinnän alla.
+Myös mitä muita algoritmeja valitun Bowyer–Watson algoritmin lisäksi voisi ohjelmassa hyödyntää on vielä mietinnän alla.
+
+Ohjelman laajuus ja sen käyttöliittymä ovat asioita joihin tarvitsen ehkä konsultaatiota ohjaajalta.
+
 ## Tuntikirjanpito
 
 | Päivä | Aika | Kuvaus |
