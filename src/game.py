@@ -2,6 +2,7 @@ import pygame
 from config import WINDOW_WIDTH, WINDOW_HEIGHT, FPS
 
 class Game:
+    
     def __init__(self):
         """Initializes the game window, clock, and running state."""
         self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
