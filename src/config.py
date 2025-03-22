@@ -1,2 +1,4 @@
-window_width = 640
-window_height= 480
+WINDOW_WIDTH = 640
+WINDOW_HEIGHT= 480
+
+FPS = 60
