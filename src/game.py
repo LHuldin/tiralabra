@@ -3,7 +3,7 @@ from config import WINDOW_WIDTH, WINDOW_HEIGHT, FPS
 
 class Game:
     def __init__(self):
-        self.display = pygame.display.set_mode((window_width, window_height))
+        self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
         pygame.display.set_caption("Dungeon Runner")
         self.clock = pygame.time.Clock()
         self.running = True
