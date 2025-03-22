@@ -3,9 +3,11 @@
 Tällä viikolla ohjelma ei edennyt toivotulla tavalla.
 Aikaa kului pygameen tutustuessa. Koska itse olen ohpen ja ohjan suorittanut aikanaan Javalla, niin en sitä ole aiemmin käyttänyt vaikka se nykyään onkin osa ohjelmoinnin jatkokurssia.
 
-Loin lähinnä muutamat modulit jotka tulevat olemaan osa ohjelmaa sekä asensin pytest kehyksen ja loin sillä vain yhden yksinkertaisen testin.
+Loin lähinnä muutamat modulit jotka tulevat olemaan osa ohjelmaa sekä asensin pytest kehyksen ja loin sillä vain yhden yksinkertaisen testin. ohjelman ainoa toiminnallisuus on tällä hetkellä luoda 640*480 pikselin kokoinen ikkuna.
 
 Tällä viikolla aikataulu ongelmien takia ohjelma ei ole oikein edennyt mutta ensi viikolla pääsen kunnolla aloittamaan ohjelman varsinaisten toiminnallisuuksien ja erityisesti tarvittavien algoritmien toteuttamisen.
+
+Ohjelman sisäinen kommentointi ja git committien kieli on jatkossa englanti.
 
 
 
