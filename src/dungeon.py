@@ -1,1 +1,1 @@
-impoert config
+import config
