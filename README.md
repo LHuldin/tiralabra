@@ -6,6 +6,8 @@
 
 [Viikkoraportti 2](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/viikkoraportti2.md)
 
+[Viikkoraportti 3](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/viikkoraportti3.md)
+
 
 ## Dokumentaatio
 
