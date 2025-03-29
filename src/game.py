@@ -112,7 +112,7 @@ class Game:
         self.display.blit(text, text_rect)
 
         pygame.draw.rect(self.display, (150, 0, 200), self.paths_button_rect)
-        text = font.render("Show Paths", True, (255, 255, 255))
+        text = font.render("Show All Paths", True, (255, 255, 255))
         text_rect = text.get_rect(center=self.paths_button_rect.center)
         self.display.blit(text, text_rect)
 
