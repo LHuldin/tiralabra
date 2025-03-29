@@ -6,6 +6,7 @@ class Room:
         self.blocks = set()
         self.positions = set()
         self.color = self.random_color()
+        self.starting_position = None
 
     def random_color(self):
         return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
