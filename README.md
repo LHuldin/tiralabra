@@ -12,3 +12,7 @@
 ## Dokumentaatio
 
 [Määrittelydokumentti](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/maarittelydokumentti.md)
+
+[Testausraportti](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/testausraportti.md)
+
+[Toteutusraportti](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/toteutusraportti.md)
