@@ -5,13 +5,13 @@ from dungeon import Dungeon
 class Game:
     
     def __init__(self):
-        """Initializes the game window, clock, and running state."""
+        """Initializes the game window, clock, buttons and running state."""
         self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT + UI_HEIGHT))
         pygame.display.set_caption("Dungeon Runner")
         self.dungeon = Dungeon()
         
         self.grid_button_rect = pygame.Rect(160, WINDOW_HEIGHT + 10, 120, 30)
-        self.quit_button_rect = pygame.Rect(WINDOW_WIDTH - 100, WINDOW_HEIGHT + 10, 80, 30)
+        self.quit_button_rect = pygame.Rect(WINDOW_WIDTH - 140, WINDOW_HEIGHT + 10, 120, 30)
         self.new_map_button_rect = pygame.Rect(20, WINDOW_HEIGHT + 10, 120, 30)
         self.paths_button_rect = pygame.Rect(300, WINDOW_HEIGHT + 10, 120, 30)
         
@@ -66,7 +66,8 @@ class Game:
             for block in room.blocks:
                 pygame.draw.rect(self.display, room.color, 
                                  (block.position.x * TILESIZE, block.position.y * TILESIZE, TILESIZE, TILESIZE))
-                
+
+        """Renders grid over display."""        
         if self.show_grid:
             for x in range(0, WINDOW_WIDTH, TILESIZE):
                 pygame.draw.line(self.display, (60, 60, 60), (x, 0), (x, WINDOW_HEIGHT))
@@ -83,7 +84,7 @@ class Game:
                     (points[i][0] * TILESIZE, points[i][1] * TILESIZE), 
                     (points[i+1][0] * TILESIZE, points[i+1][1] * TILESIZE), 2)
         """
-
+        """Renders lines between all the rooms."""
         if self.show_paths:
             points = self.dungeon.room_start_points
             for i in range(len(points)):

@@ -1,14 +1,19 @@
 from config import *
 from room import *
+from paths import *
 import random
 
 class Dungeon:
+    """Represents a dungeon composed of multiple rooms and paths."""
+
     def __init__(self, num_rooms= ROOMS, max_blocks= BLOCKS):
+        """Initialize a dungeon with a specified number of rooms and maximum blocks per room."""
         self.rooms = []
         self.room_start_points = []
         self.generate_dungeon(num_rooms, max_blocks)
 
     def generate_dungeon(self, num_rooms, max_blocks):
+        """Generate rooms randomly positioned and expanded within dungeon boundaries, avoiding overlaps."""
         attempts = 0
         max_attempts = num_rooms * 10
 
@@ -41,6 +46,7 @@ class Dungeon:
 
 
     def room_overlaps(self, new_room):
+        """Check whether a newly created room overlaps with existing rooms in the dungeon."""
         for existing_room in self.rooms:
             for pos1 in new_room.positions:
                 for pos2 in existing_room.positions:
