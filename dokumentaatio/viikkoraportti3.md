@@ -9,5 +9,5 @@ Tällä viikolla...
 | 26.3.  | 2 h            | Toteusvaihtoehtojen suunnittelua |
 | 27.3.  | 1 h            | Toteusvaihtoehtojen suunnittelua |
 | 28.3.  | 1 h            | Toteusvaihtoehtojen suunnittelua |
-| 29.3.  | 10 h            | Ohjelma koodin toteuttamista |
+| 29.3.  | 10 h            | Ohjelma koodin toteuttamista, Pylint asennettu |
 | Yhteensä | 14 h         |        |
