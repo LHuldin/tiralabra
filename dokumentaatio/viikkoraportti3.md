@@ -1,6 +1,6 @@
 # Viikko 3
 
-Tällä viikollakaan ohjelman toteutus ei vielä edennyt toivotulla tavalla. Perus toiminnallisuuksien toteuttamiseen on mennyt huomattavasti aiottua enemmän aikaa, eikä varsinaisten algoritmien tuominen osaksi sovellusta ole edennyt toivotulla tavalla. Ohjelman yksikkötestit eivät ole käytännössä muuttuneet viime viikosta
+Tällä viikollakaan ohjelman toteutus ei vielä edennyt toivotulla tavalla. Perus toiminnallisuuksien toteuttamiseen on mennyt huomattavasti aiottua enemmän aikaa, eikä varsinaisten algoritmien tuominen osaksi sovellusta ole edennyt toivotulla tavalla. Ohjelman yksikkötestit eivät ole käytännössä muuttuneet/edenneet viime viikosta.
 
 Ohjelman käyttöliittymä sisältää tällä hetkellä lähinnä toiminnan testaukseen liittyviä toimintoja kuten huoneiden/pohjan uudelleen generointi, pohjan päälle saatava ruutujakoa noudattava ruudukko ja suoran linjan huoneesta toiseen piirtävä toiminnallisuus.
 
