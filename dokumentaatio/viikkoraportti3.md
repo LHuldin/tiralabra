@@ -1,8 +1,12 @@
 # Viikko 3
 
-Tällä viikollakaan ohjelman toteutus ei vielä edennyt toivotulla tavalla. Perus toiminnallisuuksien toteuttamiseen on mennyt huomattavasti aiottua enemmän aikaa. eikä varsinaisten algoritmien tuominen osaksi sovellusta ole edennyt toivotulla tavalla. 
+Tällä viikollakaan ohjelman toteutus ei vielä edennyt toivotulla tavalla. Perus toiminnallisuuksien toteuttamiseen on mennyt huomattavasti aiottua enemmän aikaa, eikä varsinaisten algoritmien tuominen osaksi sovellusta ole edennyt toivotulla tavalla. 
 
 Ohjelman käyttöliittymä sisältää tällä hetkellä lähinnä toiminnan testaukseen liittyviä toimintoja kuten huoneiden/pohjan uudelleen generointi, pohjan päälle saatava ruutujakoa noudattava ruudukko ja suoran linjan huoneesta toiseen muodostava toiminnallisuus.
+
+Ohjelma luo tällä hetkellä config.py tiedoston parametrien mukaisia karttapohjia ja huoneita.
+
+Seuraavana ohjelmaan toteutetaan huoneiden välisten käytävien luonti hyödyntäen Bowyer–Watson algoritmia.
 
 ## Tuntikirjanpito
 
