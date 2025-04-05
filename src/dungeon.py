@@ -10,7 +10,9 @@ class Dungeon:
         """Initialize a dungeon with a specified number of rooms and maximum blocks per room."""
         self.rooms = []
         self.room_start_points = []
+        #self.paths = []
         self.generate_dungeon(num_rooms, max_blocks)
+        self.paths = calculate_paths(self.room_start_points)
 
     def generate_dungeon(self, num_rooms, max_blocks):
         """Generate rooms randomly positioned and expanded within dungeon boundaries, avoiding overlaps."""
@@ -43,6 +45,8 @@ class Dungeon:
 
             self.room_start_points.append((base_x, base_y))
             self.rooms.append(room)
+
+        #self.paths = calculate_paths(self.room_start_points)
 
 
     def room_overlaps(self, new_room):

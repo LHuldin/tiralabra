@@ -52,6 +52,26 @@ class Block:
     
 class Position:
     """Represents a 2D position on the grid."""
+
+    def __init__(self, x, y, z=0):
+        self.x = x
+        self.y = y
+        self.z = z
+
+    def neighbors(self):
+        return [Position(self.x+1, self.y), 
+                Position(self.x-1, self.y),
+                Position(self.x, self.y+1), 
+                Position(self.x, self.y-1)
+            ]
+
+    def __eq__(self, other):
+        return (self.x, self.y, self.z) == (other.x, other.y, other.z)
+
+    def __hash__(self):
+        return hash((self.x, self.y, self.z))
+
+    """
     def __init__(self, x, y):
         self.x, self.y = x, y
 
@@ -66,3 +86,4 @@ class Position:
 
     def __hash__(self):
         return hash((self.x, self.y))
+    """
