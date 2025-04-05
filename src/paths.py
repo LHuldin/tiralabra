@@ -1,5 +1,3 @@
-
-import math
 from collections import namedtuple
 from typing import List, Tuple, Set
 
