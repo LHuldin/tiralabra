@@ -45,7 +45,13 @@ class Triangle:
         return dx * dx + dy * dy < self.radius_sq
 
 def create_super_triangle(points: List[Point]) -> Triangle:
-    """Creates a super-triangle that completely encloses all given points."""
+    """Creates a super-triangle that completely encloses all given points.
+    
+    The triangle is constructed using a scaling factor of 20 * delta_max 
+    (where delta_max is the maximum range in x or y direction among the points). 
+    This ensures the triangle is large enough to encompass all input points 
+    regardless of their distribution.
+    """
     min_x, max_x = min(p.x for p in points), max(p.x for p in points)
     min_y, max_y = min(p.y for p in points), max(p.y for p in points)
     dx, dy = max_x - min_x, max_y - min_y
