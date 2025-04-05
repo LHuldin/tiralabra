@@ -13,6 +13,8 @@
 
 ## Dokumentaatio
 
+[Käyttöohje](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/käyttoohje.md)
+
 [Määrittelydokumentti](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/maarittelydokumentti.md)
 
 [Testausraportti](https://github.com/LHuldin/tiralabra/blob/main/dokumentaatio/testausraportti.md)
