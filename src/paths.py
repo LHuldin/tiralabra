@@ -15,17 +15,17 @@ class Edge:
     def __hash__(self):
         return hash(frozenset((self.p1, self.p2)))
 
-    def __repr__(self):
-        return f"Edge({self.p1}, {self.p2})"
+    #def __repr__(self):
+    #    return f"Edge({self.p1}, {self.p2})"
 
 class Triangle:
     def __init__(self, p1: Point, p2: Point, p3: Point):
         """Represents a triangle defined by three points."""
         self.points = [p1, p2, p3]
         self.edges = [Edge(p1, p2), Edge(p2, p3), Edge(p3, p1)]
-        self.circumcenter, self.radius_sq = self._circumcircle()
+        self.circumcenter, self.radius_sq = self.circumcircle()
 
-    def _circumcircle(self) -> Tuple[Point, float]:
+    def circumcircle(self) -> Tuple[Point, float]:
         """Calculates the circumcircle center and squared radius of the triangle."""
         A, B, C = self.points
         d = 2 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y))

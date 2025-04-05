@@ -2,6 +2,7 @@ from config import *
 from room import *
 from paths import *
 import random
+from typing import List, Tuple
 
 class Dungeon:
     """Represents a dungeon composed of multiple rooms and paths."""
@@ -49,7 +50,7 @@ class Dungeon:
         #self.paths = calculate_paths(self.room_start_points)
 
 
-    def room_overlaps(self, new_room):
+    def room_overlaps(self, new_room) -> bool:
         """Check whether a newly created room overlaps with existing rooms in the dungeon."""
         for existing_room in self.rooms:
             for pos1 in new_room.positions:

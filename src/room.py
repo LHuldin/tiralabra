@@ -1,5 +1,6 @@
 from config import TILESIZE
 import random
+from typing import Set, Tuple, Optional, List
 
 class Room:
     """Represents a room composed of blocks in a dungeon."""
@@ -58,7 +59,7 @@ class Position:
         self.y = y
         self.z = z
 
-    def neighbors(self):
+    def neighbors(self) -> List["Position"]:
         return [Position(self.x+1, self.y), 
                 Position(self.x-1, self.y),
                 Position(self.x, self.y+1), 
