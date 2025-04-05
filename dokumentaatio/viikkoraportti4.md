@@ -2,9 +2,11 @@
 
 Tällä viikolla toteutin ensimmäisen version luolaston tilat/huoneet yhdistävästä Bowyer-Watson algoritmista. Algoritmi toimii ja luo yhteydet huoneiden välille mutta kokonaisuus vaatii vielä hiomista ja konkreettisempaa integraatiota osaksi ohjelmaa. Yritin myös toteuttaa eri tasoja/kerroksia luolastoon mutta en saanut sitä toimimaan toivotulla tavalla yhdessä käyttöliittymän ja luolaston luonnin kanssa joten sen toteuttaminen jää ensi viikkoon.
 
+Oman oppimisen kannalta Bowyer-Watson algoritmin toteuttaminen toi mukanaan monia pythonin käyttötapoja joita en itse aikaisemmin ollut käyttänyt.
+
 Käyttöliittymän osalta jaoin ikkunan ja pelialueen erillisiksi pinnoiksi jolloin ikkunan koko ei enää rajoita luolaston kokoa.
 
-Testauksen toteuttaminen laahaa yhä jäljessä.
+Testauksen toteuttaminen laahaa yhä jäljessä, vaikka se tällä viikolla etenikin.
 
 
 
