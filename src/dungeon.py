@@ -21,8 +21,8 @@ class Dungeon:
             attempts += 1
             room = Room()
 
-            base_x = random.randint(0, (WINDOW_WIDTH // TILESIZE) - 2)
-            base_y = random.randint(0, (WINDOW_HEIGHT // TILESIZE) - 2)
+            base_x = random.randint(0, (MAP_WIDTH // TILESIZE) - 2)
+            base_y = random.randint(0, (MAP_HEIGHT // TILESIZE) - 2)
 
             starting_positions = [
                 Position(base_x, base_y),
