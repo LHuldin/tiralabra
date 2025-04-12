@@ -1,14 +1,16 @@
 # Viikko 5
 
-Tällä viikolla
+Tällä viikolla yritin toteuttaa eri kerroksia luolastoon mutta en saanut toiminnallisuutta toimimaan toivotulla tavalla joten se ei ole vieläkään osa ohjelmaa. lisätyt toiminnallisuudet ovat triangulaatioiden kaaria ja samlla huoneiden välisiä polkuja karsiva Primin algoritmi. Toin myös luodussa luolastossa liikkuvan hahmon osaksi ohjelmaa. 
+
+Testit laahaavat edelleenkin jäljessä aikataulusta.
 
 
 ## Tuntikirjanpito
 
 | Päivä | Aika | Kuvaus |
 | ----- | ------------- | ------ |
-| 7.4.  | 1 h            |  |
-| 10.4.  | 2 h            |  |
-| 11.4.  | 2 h            |  |
-| 12.4.  |  h            |  |
-| Yhteensä | 5 h         |        |
+| 7.4.  | 1 h            | Testien suunnittelua |
+| 10.4.  | 2 h            | Ohjelman toteuttamista |
+| 11.4.  | 2 h            | Ohjelman toteuttamista, vertaisarvio |
+| 12.4.  | 10 h            | Ohjelman toteuttamista, vertaisarvio ja siitä saadun palautteen hyödyntäminen |
+| Yhteensä | 15 h         |        |
