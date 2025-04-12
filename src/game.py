@@ -101,6 +101,8 @@ class Game:
                 pygame.draw.rect(self.surface, room.color, 
                                  (block.position.x * TILESIZE, block.position.y * TILESIZE, TILESIZE, TILESIZE))
         
+        for (x, y) in self.dungeon.corridor_positions:
+            pygame.draw.rect(self.surface, (255, 255, 255), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
         #self.display.blit(self.surface, (0, 0), self.camera)  # DRAW ONLY CAMERA'S VIEW OF GAME AREA
 
         """Renders grid over display."""        

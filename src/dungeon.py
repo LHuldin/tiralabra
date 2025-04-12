@@ -11,7 +11,8 @@ class Dungeon:
         """Initialize a dungeon with a specified number of rooms and maximum blocks per room."""
         self.rooms = []
         self.room_start_points = []
-        #self.paths = []
+        self.corridor_positions = []
+        self.paths = []
         self.generate_dungeon(num_rooms, max_blocks)
         self.paths = calculate_paths(self.room_start_points)
 
@@ -48,6 +49,22 @@ class Dungeon:
             self.rooms.append(room)
 
         #self.paths = calculate_paths(self.room_start_points)
+        # Generate simple corridors between rooms based on Delaunay triangulation
+        self.paths = calculate_paths([(x, y) for (x, y) in self.room_start_points])
+
+        for p1, p2 in self.paths:
+            corridor = []
+
+            # First, draw a horizontal corridor from p1 to p2
+            for x in range(min(p1.x, p2.x), max(p1.x, p2.x) + 1):
+                corridor.append((x, p1.y))
+
+            # Then, draw a vertical corridor from the end of horizontal segment to p2
+            for y in range(min(p1.y, p2.y), max(p1.y, p2.y) + 1):
+                corridor.append((p2.x, y))
+
+            # Add all corridor tiles to the dungeon's corridor list  
+            self.corridor_positions.extend(corridor)
 
 
     def room_overlaps(self, new_room) -> bool:
