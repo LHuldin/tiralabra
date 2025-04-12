@@ -7,7 +7,7 @@ class Character:
         self.y = y
         self.color = color
         self.radius = TILESIZE // 2
-        self.speed = TILESIZE  # Moves one tile per keypress
+        self.speed = TILESIZE  
         self.last_move_time = 0
 
     def handle_input(self, keys, walkable_tiles):
