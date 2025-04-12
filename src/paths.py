@@ -1,5 +1,7 @@
 from collections import namedtuple
 from typing import List, Tuple, Set
+import heapq
+import math
 
 Point = namedtuple("Point", ["x", "y"])
 
@@ -120,5 +122,47 @@ def calculate_paths(room_points: List[Tuple[float, float]]) -> List[Tuple[Point,
                 edges.add(edge)
 
     return [(edge.p1, edge.p2) for edge in edges]
+
+def distance(p1: Point, p2: Point) -> float:
+    """Calculates Euclidean distance between two points."""
+    return math.hypot(p1.x - p2.x, p1.y - p2.y)
+
+def prim_mst(points: List[Point], edges: List[Tuple[Point, Point]]) -> List[Tuple[Point, Point]]:
+    """Constructs a Minimum Spanning Tree (MST) using Prim's algorithm.
+
+    Args:
+        points: List of Points representing graph nodes.
+        edges: List of tuples (Point, Point) representing undirected edges.
+
+    Returns:
+        A list of edges (as tuples) that form the MST.
+    """
+    if not points:
+        return []
+
+    connected = set()
+    mst_points = []
+    start = points[0]
+    connected.add(start)
+
+    edge_queue = []
+
+    for (p1, p2) in edges:
+        if start in (p1, p2):
+            other = p2 if p1 == start else p1
+            heapq.heappush(edge_queue, (distance(start, other), start, other))
+
+    while edge_queue and len(connected) < len(points):
+        cost, p1, p2 = heapq.heappop(edge_queue)
+        if p2 not in connected:
+            connected.add(p2)
+            mst_points.append((p1, p2))
+            for (a, b) in edges:
+                if a == p2 and b not in connected:
+                    heapq.heappush(edge_queue, (distance(a, b), a, b))
+                elif b == p2 and a not in connected:
+                    heapq.heappush(edge_queue, (distance(b, a), b, a))
+
+    return mst_points
 
 

@@ -12,7 +12,9 @@ class Dungeon:
         self.rooms = []
         self.room_start_points = []
         self.corridor_positions = []
+        self.corridor_positions_mst = []
         self.paths = []
+        self.paths_mst = []
         self.generate_dungeon(num_rooms, max_blocks)
         self.paths = calculate_paths(self.room_start_points)
 
@@ -49,7 +51,10 @@ class Dungeon:
             self.rooms.append(room)
 
         #self.paths = calculate_paths(self.room_start_points)
-        # Generate simple corridors between rooms based on Delaunay triangulation
+        
+        
+        
+        """Generate simple corridors between rooms based on Delaunay triangulation"""
         self.paths = calculate_paths([(x, y) for (x, y) in self.room_start_points])
 
         for p1, p2 in self.paths:
@@ -65,6 +70,28 @@ class Dungeon:
 
             # Add all corridor tiles to the dungeon's corridor list  
             self.corridor_positions.extend(corridor)
+
+        
+
+        """Generate paths using Delaunay triangulation and filter them using Prim's algorithm."""
+        points = [Point(x, y) for (x, y) in self.room_start_points]
+        edges = calculate_paths(self.room_start_points)
+        self.paths_mst = prim_mst(points, edges)
+
+        """Create corridors between points in the MST."""
+        for p1, p2 in self.paths_mst:
+            corridor = []
+
+            # First, draw a horizontal corridor from p1 to p2
+            for x in range(min(p1.x, p2.x), max(p1.x, p2.x) + 1):
+                corridor.append((x, p1.y))
+
+            # Then, draw a vertical corridor from the end of the horizontal segment to p2
+            for y in range(min(p1.y, p2.y), max(p1.y, p2.y) + 1):
+                corridor.append((p2.x, y))
+
+            # Add all corridor tiles to the dungeon's corridor list
+            self.corridor_positions_mst.extend(corridor)
 
 
     def room_overlaps(self, new_room) -> bool:

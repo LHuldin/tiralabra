@@ -1,6 +1,8 @@
 import pygame
 from config import * #WINDOW_WIDTH, WINDOW_HEIGHT, FPS, TILESIZE, UI_HEIGHT
 from dungeon import Dungeon
+from character import Character
+from paths import *
 
 class Game:
     
@@ -18,6 +20,10 @@ class Game:
 
         self.dungeon = Dungeon()
         #self.paths = Paths(self.dungeon.rooms)
+
+        
+
+        
         
         self.grid_button_rect = pygame.Rect(160, WINDOW_HEIGHT + 10, 120, 30)
         self.quit_button_rect = pygame.Rect(WINDOW_WIDTH - 140, WINDOW_HEIGHT + 10, 120, 30)
@@ -25,11 +31,19 @@ class Game:
         self.paths_button_rect = pygame.Rect(300, WINDOW_HEIGHT + 10, 120, 30)
         self.all_paths_button_rect = pygame.Rect(440, WINDOW_HEIGHT + 10, 120, 30)
         
-        self.show_paths = False
+        #self.show_paths = False
+        self.path_display_mode = 0  # 0 = none, 1 = triangulation, 2 = MST
         self.show_all_paths = False
         self.show_grid = False
         self.clock = pygame.time.Clock()
         self.running = True
+
+        self.walkable_tiles = self.get_walkable_tiles()
+        start_tile = self.dungeon.room_start_points[0]
+        start_x, start_y = start_tile[0] * TILESIZE, start_tile[1] * TILESIZE
+        self.character = Character(x=start_x, y=start_y)
+
+
 
     def run(self):
         """Runs the main game loop.
@@ -57,15 +71,22 @@ class Game:
                     self.running = False
                 elif self.new_map_button_rect.collidepoint(event.pos):
                     self.dungeon = Dungeon()
+                    self.walkable_tiles = self.get_walkable_tiles()
+                    start_tile = self.dungeon.room_start_points[0]
+                    start_x, start_y = start_tile[0] * TILESIZE, start_tile[1] * TILESIZE
+                    self.character = Character(x=start_x, y=start_y)
                     self.camera.topleft = (0, 0)
                 elif self.grid_button_rect.collidepoint(event.pos):
                     self.show_grid = not self.show_grid
+                #elif self.paths_button_rect.collidepoint(event.pos):
+                #    self.show_paths = not self.show_paths
                 elif self.paths_button_rect.collidepoint(event.pos):
-                    self.show_paths = not self.show_paths
+                    self.path_display_mode = (self.path_display_mode + 1) % 3
                 elif self.all_paths_button_rect.collidepoint(event.pos):
                     self.show_all_paths = not self.show_all_paths
 
         keys = pygame.key.get_pressed()
+        self.character.handle_input(keys, self.walkable_tiles)
 
     def update(self):
         """Updates the game state.
@@ -78,13 +99,13 @@ class Game:
         keys = pygame.key.get_pressed()
         camera_speed = 10
 
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_a]:
             self.camera.x -= camera_speed
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_d]:
             self.camera.x += camera_speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_w]:
             self.camera.y -= camera_speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_s]:
             self.camera.y += camera_speed
 
         """ Prevent camera from going outside game area """
@@ -101,9 +122,11 @@ class Game:
                 pygame.draw.rect(self.surface, room.color, 
                                  (block.position.x * TILESIZE, block.position.y * TILESIZE, TILESIZE, TILESIZE))
         
-        for (x, y) in self.dungeon.corridor_positions:
+        for (x, y) in self.dungeon.corridor_positions_mst:
             pygame.draw.rect(self.surface, (255, 255, 255), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
         #self.display.blit(self.surface, (0, 0), self.camera)  # DRAW ONLY CAMERA'S VIEW OF GAME AREA
+
+        self.character.draw(self.surface)
 
         """Renders grid over display."""        
         if self.show_grid:
@@ -135,11 +158,43 @@ class Game:
                         (points[j][0] * TILESIZE, points[j][1] * TILESIZE), 2)
                    
         
-        if self.show_paths:
+        #if self.show_paths:
+        #    for path in self.dungeon.paths:
+        #        start = (path[0][0] * TILESIZE, path[0][1] * TILESIZE)
+        #        end = (path[1][0] * TILESIZE, path[1][1] * TILESIZE)
+        #        pygame.draw.line(self.surface, (255, 0, 0), start, end, 2)
+
+        """
+
+        room_points = [(p[0] * TILESIZE, p[1] * TILESIZE) for p in self.dungeon.room_start_points]
+
+        if self.path_display_mode == 1:
+            # Näytä Delaunay-triangulaatio
+            edges = calculate_paths(room_points)
+            for p1, p2 in edges:
+                pygame.draw.line(self.surface, (0, 255, 255), (p1.x, p1.y), (p2.x, p2.y), 2)
+
+        elif self.path_display_mode == 2:
+            # Näytä MST
+            edges = calculate_paths(room_points)
+            points = [Point(x, y) for x, y in room_points]
+            mst = prim_mst(points, edges)
+            for p1, p2 in mst:
+                pygame.draw.line(self.surface, (255, 0, 255), (p1.x, p1.y), (p2.x, p2.y), 2)
+
+        """
+
+        if self.path_display_mode == 1:
             for path in self.dungeon.paths:
                 start = (path[0][0] * TILESIZE, path[0][1] * TILESIZE)
                 end = (path[1][0] * TILESIZE, path[1][1] * TILESIZE)
                 pygame.draw.line(self.surface, (255, 0, 0), start, end, 2)
+
+        elif self.path_display_mode == 2:
+            for path in self.dungeon.paths_mst:
+                start = (path[0][0] * TILESIZE, path[0][1] * TILESIZE)
+                end = (path[1][0] * TILESIZE, path[1][1] * TILESIZE)
+                pygame.draw.line(self.surface, (255, 0, 255), start, end, 2)
 
 
         """DRAW ONLY CAMERA'S VIEW OF Surface"""            
@@ -164,7 +219,7 @@ class Game:
         self.display.blit(text, text_rect)
 
         pygame.draw.rect(self.display, (150, 0, 200), self.paths_button_rect)
-        text = font.render("Show Tri Paths", True, (255, 255, 255))
+        text = font.render("Show Tri/MST", True, (255, 255, 255))
         text_rect = text.get_rect(center=self.paths_button_rect.center)
         self.display.blit(text, text_rect)
 
@@ -175,3 +230,10 @@ class Game:
 
 
         pygame.display.flip()
+
+    def get_walkable_tiles(self):
+        tiles = set()
+        for room in self.dungeon.rooms:
+            tiles.update((p.x, p.y) for p in room.positions)
+        tiles.update(self.dungeon.corridor_positions_mst)
+        return tiles
