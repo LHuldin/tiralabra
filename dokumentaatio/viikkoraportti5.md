@@ -4,7 +4,9 @@ Tällä viikolla yritin toteuttaa eri kerroksia luolastoon mutta en saanut toimi
 
 Testit laahaavat edelleenkin jäljessä aikataulusta.
 
-Seuraavaksi keskityn ohjelmassa erityisesti testien kattavuuden parantamiseen ja koodin siistimiseen. Tavoite on myös vielä jotenkin monipuolistaa luolaston käytävien luontia.
+Seuraavaksi keskityn ohjelmassa erityisesti testien kattavuuden parantamiseen ja koodin siistimiseen. Docstring kommentointi vaatii päivittämistä ja koodin tyypitys vaatii yhdenmukaistamista.
+
+Tavoite on myös vielä monipuolistaa luolaston käytävien luontia.
 
 
 ## Tuntikirjanpito
