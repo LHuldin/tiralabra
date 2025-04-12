@@ -16,5 +16,5 @@ Tavoite on myös monipuolistaa luolaston käytävien luontia ja mahdollistaa kä
 | 7.4.  | 1 h            | Testien suunnittelua |
 | 10.4.  | 2 h            | Ohjelman toteuttamista |
 | 11.4.  | 2 h            | Ohjelman toteuttamista, vertaisarvio |
-| 12.4.  | 10 h            | Ohjelman toteuttamista, vertaisarvio ja siitä saadun palautteen hyödyntäminen |
-| Yhteensä | 15 h         |        |
+| 12.4.  | 11 h            | Ohjelman toteuttamista, vertaisarvio ja siitä saadun palautteen hyödyntäminen, testaus |
+| Yhteensä | 16 h         |        |
