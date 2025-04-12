@@ -1,8 +1,10 @@
 # Viikko 5
 
-Tällä viikolla yritin toteuttaa eri kerroksia luolastoon mutta en saanut toiminnallisuutta toimimaan toivotulla tavalla joten se ei ole vieläkään osa ohjelmaa. lisätyt toiminnallisuudet ovat triangulaatioiden kaaria ja samlla huoneiden välisiä polkuja karsiva Primin algoritmi. Toin myös luodussa luolastossa liikkuvan hahmon osaksi ohjelmaa. 
+Tällä viikolla yritin toteuttaa eri kerroksia luolastoon mutta en saanut toiminnallisuutta toimimaan toivotulla tavalla joten se ei ole vieläkään osa ohjelmaa. Lisätyt toiminnallisuudet ovat triangulaatioiden kaaria ja samlla huoneiden välisiä polkuja karsiva Primin algoritmi. Toin myös luodussa luolastossa liikkuvan hahmon osaksi ohjelmaa. 
 
 Testit laahaavat edelleenkin jäljessä aikataulusta.
+
+Seuraavaksi keskityn ohjelmassa erityisesti testien kattavuuden parantamiseen ja koodin siistimiseen. Tavoite on myös vielä jotenkin monipuolistaa luolaston käytävien luontia.
 
 
 ## Tuntikirjanpito
