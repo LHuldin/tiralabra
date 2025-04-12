@@ -6,7 +6,7 @@ Testit laahaavat edelleenkin jäljessä aikataulusta.
 
 Seuraavaksi keskityn ohjelmassa erityisesti testien kattavuuden parantamiseen ja koodin siistimiseen. Docstring kommentointi vaatii päivittämistä ja koodin tyypitys vaatii yhdenmukaistamista.
 
-Tavoite on myös vielä monipuolistaa luolaston käytävien luontia.
+Tavoite on myös monipuolistaa luolaston käytävien luontia ja mahdollistaa käyttäjän antaa käyttöliittymän kautta tarvittavat parametrit, jotka tällä hetkellä tulevat config tiedostosta. Myös luolaston kerroksellisuus on edelleen tarkoitus toteuttaa osaksi ohjelmaa.
 
 
 ## Tuntikirjanpito
