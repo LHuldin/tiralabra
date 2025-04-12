@@ -1,4 +1,5 @@
 # Toteutusraportti
+Ohjelma on toteutettu Python kielellä, ja sen käyttöliittymä hyödyntää Pygame-kirjastoa.
 
 ## Rakenne
 Ohjelma luo luolaston annettujen parametrien pohjalta (config.py tiedosto) luoden satunnaisen mallisia huoneita, joiden väliset käytävät luodaan Bowyer-Watson algoritmin luomien triangulaatioiden pohjalta. Triangulaatioiden kaariin perustuvia huoneiden välisiä käytäviä karsitaan edelleen Primin algoritmin virittän puun avulla.
