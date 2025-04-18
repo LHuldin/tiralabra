@@ -1,3 +1,8 @@
 # Käyttöohje
 
-Tulossa
+## Asennus
+
+1. Hakemistoon:
+```
+git clone 
+```
