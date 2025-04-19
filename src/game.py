@@ -254,7 +254,7 @@ class Game:
         #for path in self.dungeon.paths:
         #    occupied |= set(path)  
 
-        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)]
         for x, y in occupied:
             for dx, dy in directions:
                 neighbor = (x + dx, y + dy)
