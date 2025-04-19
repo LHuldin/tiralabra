@@ -31,3 +31,7 @@ poetry shell
 python3 src/main.py
 ```
 
+## Ohjelman käyttö
+
+
+
