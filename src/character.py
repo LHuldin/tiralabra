@@ -9,6 +9,9 @@ class Character:
         self.radius = TILESIZE // 2
         self.speed = TILESIZE  
         self.last_move_time = 0
+        self.image = pygame.image.load("assets/hero.png").convert_alpha()
+        #self.image = pygame.transform.scale(self.image, (2*self.radius, 2*self.radius))
+        self.image = pygame.transform.scale(self.image, (TILESIZE, TILESIZE))
 
     def handle_input(self, keys, walkable_tiles):
         now = pygame.time.get_ticks()
@@ -34,5 +37,6 @@ class Character:
             self.last_move_time = now
 
     def draw(self, surface):
-        center = (self.x + self.radius, self.y + self.radius)
-        pygame.draw.circle(surface, self.color, center, self.radius)
+        surface.blit(self.image, (self.x, self.y))
+        #center = (self.x + self.radius, self.y + self.radius)
+        #pygame.draw.circle(surface, self.color, center, self.radius)

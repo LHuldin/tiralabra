@@ -33,6 +33,8 @@ class Game:
         self.new_map_button_rect = pygame.Rect(20, WINDOW_HEIGHT + 10, 120, 30)
         self.paths_button_rect = pygame.Rect(300, WINDOW_HEIGHT + 10, 120, 30)
         self.all_paths_button_rect = pygame.Rect(440, WINDOW_HEIGHT + 10, 120, 30)
+        self.toggle_color_button_rect = pygame.Rect(580, WINDOW_HEIGHT + 10, 60, 30)
+
         
         #self.show_paths = False
         self.path_display_mode = 0  # 0 = none, 1 = triangulation, 2 = MST
@@ -40,6 +42,12 @@ class Game:
         self.show_grid = False
         self.clock = pygame.time.Clock()
         self.running = True
+        self.brown_mode = True
+
+        for room in self.dungeon.rooms:
+            room.color = (181, 101, 29)
+
+        self.corridor_color = (181, 101, 29) if self.brown_mode else (255, 255, 255)
 
         self.walkable_tiles = self.get_walkable_tiles()
         start_tile = self.dungeon.room_start_points[0]
@@ -88,6 +96,8 @@ class Game:
                     self.path_display_mode = (self.path_display_mode + 1) % 3
                 elif self.all_paths_button_rect.collidepoint(event.pos):
                     self.show_all_paths = not self.show_all_paths
+                elif self.toggle_color_button_rect.collidepoint(event.pos):
+                    self.toggle_dungeon_colors()
 
         keys = pygame.key.get_pressed()
         self.character.handle_input(keys, self.walkable_tiles)
@@ -127,7 +137,7 @@ class Game:
                                  (block.position.x * TILESIZE, block.position.y * TILESIZE, TILESIZE, TILESIZE))
         
         for (x, y) in self.dungeon.corridor_positions_mst:
-            pygame.draw.rect(self.surface, (255, 255, 255), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
+            pygame.draw.rect(self.surface, self.corridor_color, (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
         #self.display.blit(self.surface, (0, 0), self.camera)  # DRAW ONLY CAMERA'S VIEW OF GAME AREA
 
         self.draw_walls(self.surface)
@@ -232,7 +242,12 @@ class Game:
         pygame.draw.rect(self.display, (150, 75, 0), self.all_paths_button_rect)
         text = font.render("Show All Paths", True, (255, 255, 255))
         text_rect = text.get_rect(center=self.all_paths_button_rect.center)
-        self.display.blit(text, text_rect)
+        self.display.blit(text, text_rect)           
+
+        pygame.draw.rect(self.display, (255, 255, 0), self.toggle_color_button_rect)
+        text = font.render("Color", True, (255, 255, 255))
+        text_rect = text.get_rect(center=self.toggle_color_button_rect.center)
+        self.display.blit(text, text_rect)  
 
 
         pygame.display.flip()
@@ -264,3 +279,18 @@ class Game:
     def draw_walls(self, surface):
         for x, y in self.walls:
             pygame.draw.rect(surface, (100, 100, 100), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
+
+    def toggle_dungeon_colors(self):
+        self.brown_mode = not self.brown_mode
+        if self.brown_mode:
+            color = (181, 101, 29)
+        else:
+            color = None
+
+        for room in self.dungeon.rooms:
+            if color:
+                room.color = color
+            else:
+                room.color = room.random_color()
+
+        self.corridor_color = color if color else (255, 255, 255)
