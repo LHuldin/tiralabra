@@ -17,6 +17,7 @@ class Dungeon:
         self.paths_mst = []
         self.generate_dungeon(num_rooms, max_blocks)
         self.paths = calculate_paths(self.room_start_points)
+        
 
     def generate_dungeon(self, num_rooms, max_blocks):
         """Generate rooms randomly positioned and expanded within dungeon boundaries, avoiding overlaps."""
@@ -27,8 +28,8 @@ class Dungeon:
             attempts += 1
             room = Room()
 
-            base_x = random.randint(0, (MAP_WIDTH // TILESIZE) - 2)
-            base_y = random.randint(0, (MAP_HEIGHT // TILESIZE) - 2)
+            base_x = random.randint(1, (MAP_WIDTH // TILESIZE) - 3)
+            base_y = random.randint(1, (MAP_HEIGHT // TILESIZE) - 3)
 
             starting_positions = [
                 Position(base_x, base_y),

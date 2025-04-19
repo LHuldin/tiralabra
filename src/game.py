@@ -19,6 +19,9 @@ class Game:
 
 
         self.dungeon = Dungeon()
+
+        self.walls = set()
+        self.create_walls()
         #self.paths = Paths(self.dungeon.rooms)
 
         
@@ -71,6 +74,7 @@ class Game:
                     self.running = False
                 elif self.new_map_button_rect.collidepoint(event.pos):
                     self.dungeon = Dungeon()
+                    self.create_walls()
                     self.walkable_tiles = self.get_walkable_tiles()
                     start_tile = self.dungeon.room_start_points[0]
                     start_x, start_y = start_tile[0] * TILESIZE, start_tile[1] * TILESIZE
@@ -125,6 +129,8 @@ class Game:
         for (x, y) in self.dungeon.corridor_positions_mst:
             pygame.draw.rect(self.surface, (255, 255, 255), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
         #self.display.blit(self.surface, (0, 0), self.camera)  # DRAW ONLY CAMERA'S VIEW OF GAME AREA
+
+        self.draw_walls(self.surface)
 
         self.character.draw(self.surface)
 
@@ -237,3 +243,24 @@ class Game:
             tiles.update((p.x, p.y) for p in room.positions)
         tiles.update(self.dungeon.corridor_positions_mst)
         return tiles
+    
+    def create_walls(self):
+        self.walls = set()
+        occupied = set()
+        for room in self.dungeon.rooms:
+            occupied |= {(block.position.x, block.position.y) for block in room.blocks}
+        occupied |= set(self.dungeon.corridor_positions_mst)
+        
+        #for path in self.dungeon.paths:
+        #    occupied |= set(path)  
+
+        directions = [(-1, 0), (1, 0), (0, -1), (0, 1)]
+        for x, y in occupied:
+            for dx, dy in directions:
+                neighbor = (x + dx, y + dy)
+                if neighbor not in occupied:
+                    self.walls.add(neighbor)
+
+    def draw_walls(self, surface):
+        for x, y in self.walls:
+            pygame.draw.rect(surface, (100, 100, 100), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))

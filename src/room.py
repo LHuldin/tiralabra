@@ -1,4 +1,4 @@
-from config import TILESIZE
+from config import TILESIZE, MAP_WIDTH, MAP_HEIGHT
 import random
 from typing import Set, Tuple, Optional, List
 
@@ -16,10 +16,24 @@ class Room:
         return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def add_block(self, position):
+        """Add a new block to the room at the given position if it's not already occupied and not too close to the map edges."""
+        x, y = position.x, position.y
+        MAX_TILES_X = MAP_WIDTH // TILESIZE
+        MAX_TILES_Y = MAP_HEIGHT // TILESIZE
+        #if 1 <= x < MAP_WIDTH - 1 and 1 <= y < MAP_HEIGHT - 1:
+        if 1 <= x < MAX_TILES_X - 1 and 1 <= y < MAX_TILES_Y - 1:
+            if position not in self.positions:
+                self.blocks.add(Block(position))
+                self.positions.add(position)
+
+
+        
         """Add a new block to the room at the given position if it's not already occupied."""
+        """
         if position not in self.positions:
             self.blocks.add(Block(position))
             self.positions.add(position)
+        """
 
     def expand(self):
         """Expand the room by adding a block at a randomly selected neighboring position."""
