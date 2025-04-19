@@ -47,7 +47,7 @@ python3 src/main.py
 
 - Color näppäin näyttää luolaston käytävät ja huoneet, joko kokonaan ruskeana tai käytävät valkoisena ja huoneet satunnaisen eri värisinä.
 
-- Quit näppäin lopettaa ohjelmnan suorittamisen.
+- Quit näppäin lopettaa ohjelman suorittamisen.
 
 
 
