@@ -1,4 +1,5 @@
 import pygame
+import os
 from config import *
 
 class Character:
@@ -9,7 +10,10 @@ class Character:
         self.radius = TILESIZE // 2
         self.speed = TILESIZE  
         self.last_move_time = 0
-        self.image = pygame.image.load("assets/hero.png").convert_alpha()
+        base_dir = os.path.dirname(__file__)
+        image_path = os.path.join(base_dir, "assets", "hero.png")
+        self.image = pygame.image.load(image_path).convert_alpha()
+        #self.image = pygame.image.load("assets/hero.png").convert_alpha()
         #self.image = pygame.transform.scale(self.image, (2*self.radius, 2*self.radius))
         self.image = pygame.transform.scale(self.image, (TILESIZE, TILESIZE))
 
