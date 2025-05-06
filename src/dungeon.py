@@ -17,6 +17,8 @@ class Dungeon:
         self.paths_mst = []
         self.generate_dungeon(num_rooms, max_blocks)
         self.paths = calculate_paths(self.room_start_points)
+        goal_tile = self.room_start_points[-1]
+        self.goal_position = (goal_tile[0] * TILESIZE, goal_tile[1] * TILESIZE)
         
 
     def generate_dungeon(self, num_rooms, max_blocks):

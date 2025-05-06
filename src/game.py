@@ -3,6 +3,7 @@ from config import * #WINDOW_WIDTH, WINDOW_HEIGHT, FPS, TILESIZE, UI_HEIGHT
 from dungeon import Dungeon
 from character import Character
 from paths import *
+import sys
 
 class Game:
     
@@ -24,6 +25,9 @@ class Game:
         self.create_walls()
         #self.paths = Paths(self.dungeon.rooms)
 
+        self.goal_position = self.dungeon.goal_position
+        self.game_over = False
+
         
 
         
@@ -33,7 +37,10 @@ class Game:
         self.new_map_button_rect = pygame.Rect(20, WINDOW_HEIGHT + 10, 120, 30)
         self.paths_button_rect = pygame.Rect(300, WINDOW_HEIGHT + 10, 120, 30)
         self.all_paths_button_rect = pygame.Rect(440, WINDOW_HEIGHT + 10, 120, 30)
-        self.toggle_color_button_rect = pygame.Rect(580, WINDOW_HEIGHT + 10, 60, 30)
+        self.toggle_color_button_rect = pygame.Rect(20, WINDOW_HEIGHT + 50, 120, 30)
+        self.extra_button2 = pygame.Rect(160, WINDOW_HEIGHT + 50, 120, 30)
+        self.extra_button3 = pygame.Rect(300, WINDOW_HEIGHT + 50, 120, 30)
+        self.extra_button4 = pygame.Rect(440, WINDOW_HEIGHT + 50, 120, 30)
 
         
         #self.show_paths = False
@@ -43,6 +50,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.running = True
         self.brown_mode = True
+        self.follow_player = True
+        self.limited_visibility = True
 
         for room in self.dungeon.rooms:
             room.color = (181, 101, 29)
@@ -88,6 +97,8 @@ class Game:
                     start_x, start_y = start_tile[0] * TILESIZE, start_tile[1] * TILESIZE
                     self.character = Character(x=start_x, y=start_y)
                     self.camera.topleft = (0, 0)
+                    self.goal_position = self.dungeon.goal_position
+                    self.game_over = False
                 elif self.grid_button_rect.collidepoint(event.pos):
                     self.show_grid = not self.show_grid
                 #elif self.paths_button_rect.collidepoint(event.pos):
@@ -98,9 +109,14 @@ class Game:
                     self.show_all_paths = not self.show_all_paths
                 elif self.toggle_color_button_rect.collidepoint(event.pos):
                     self.toggle_dungeon_colors()
-
-        keys = pygame.key.get_pressed()
-        self.character.handle_input(keys, self.walkable_tiles)
+                elif self.extra_button2.collidepoint(event.pos):
+                    self.follow_player = not self.follow_player
+                elif self.extra_button3.collidepoint(event.pos):
+                    self.limited_visibility = not self.limited_visibility
+        
+        if not self.game_over:
+            keys = pygame.key.get_pressed()
+            self.character.handle_input(keys, self.walkable_tiles)
 
     def update(self):
         """Updates the game state.
@@ -111,36 +127,75 @@ class Game:
 
 
         keys = pygame.key.get_pressed()
-        camera_speed = 10
-
-        if keys[pygame.K_a]:
-            self.camera.x -= camera_speed
-        if keys[pygame.K_d]:
-            self.camera.x += camera_speed
-        if keys[pygame.K_w]:
-            self.camera.y -= camera_speed
-        if keys[pygame.K_s]:
-            self.camera.y += camera_speed
+        if self.follow_player:
+            self.camera.center = (self.character.x + TILESIZE // 2, self.character.y + TILESIZE // 2)
+        else:  
+            camera_speed = 10
+            if keys[pygame.K_a]:
+                self.camera.x -= camera_speed
+            if keys[pygame.K_d]:
+                self.camera.x += camera_speed
+            if keys[pygame.K_w]:
+                self.camera.y -= camera_speed
+            if keys[pygame.K_s]:
+                self.camera.y += camera_speed
 
         """ Prevent camera from going outside game area """
         self.camera.x = max(0, min(self.camera.x, self.surface.get_width() - self.camera.width))  # CAMERA BOUNDARY X
         self.camera.y = max(0, min(self.camera.y, self.surface.get_height() - self.camera.height))  # CAMERA BOUNDARY Y
+
+        if (self.character.x, self.character.y) == self.goal_position:
+            self.end_game(self.display)
         
 
     def render(self):
         """Renders dungeon rooms and blocks onto the display."""
         self.display.fill((0, 0, 0))
         self.surface.fill((30, 30, 30))
+
+        player_tile = (self.character.x // TILESIZE, self.character.y // TILESIZE)
+
         for room in self.dungeon.rooms:
             for block in room.blocks:
-                pygame.draw.rect(self.surface, room.color, 
-                                 (block.position.x * TILESIZE, block.position.y * TILESIZE, TILESIZE, TILESIZE))
+                tile_pos = (block.position.x, block.position.y)
+
+                if not self.limited_visibility or (
+                    abs(tile_pos[0] - player_tile[0]) <= 8 and
+                    abs(tile_pos[1] - player_tile[1]) <= 8
+                ):
+                    pygame.draw.rect(self.surface, 
+                        room.color, (block.position.x * TILESIZE, block.position.y * TILESIZE, TILESIZE, TILESIZE))
         
         for (x, y) in self.dungeon.corridor_positions_mst:
-            pygame.draw.rect(self.surface, self.corridor_color, (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
+            if not self.limited_visibility or (
+                abs(x - player_tile[0]) <= 8 and abs(y - player_tile[1]) <= 8
+            ):
+                pygame.draw.rect(self.surface, self.corridor_color, (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
         #self.display.blit(self.surface, (0, 0), self.camera)  # DRAW ONLY CAMERA'S VIEW OF GAME AREA
 
         self.draw_walls(self.surface)
+
+        goal_x, goal_y = self.goal_position
+        goal_tile = (goal_x // TILESIZE, goal_y // TILESIZE)
+
+        time_now = pygame.time.get_ticks()
+        color_phase = (time_now // 500) % 3
+
+        if color_phase == 0:
+            goal_color = (255, 255, 0)  # keltainen
+        elif color_phase == 1:
+            goal_color = (0, 255, 0)    # vihreä
+        else:
+            goal_color = (0, 255, 255)  # syaani
+
+        if not self.limited_visibility or (
+            abs(goal_tile[0] - player_tile[0]) <= 8 and abs(goal_tile[1] - player_tile[1]) <= 8
+        ):
+            pygame.draw.rect(
+                self.surface,
+                goal_color,
+                (goal_x, goal_y, TILESIZE, TILESIZE)
+            )
 
         self.character.draw(self.surface)
 
@@ -249,6 +304,23 @@ class Game:
         text_rect = text.get_rect(center=self.toggle_color_button_rect.center)
         self.display.blit(text, text_rect)  
 
+        follow_text = "Follow: ON" if self.follow_player else "Follow: OFF"
+        pygame.draw.rect(self.display, (100, 100, 255), self.extra_button2)
+        text = font.render(follow_text, True, (255, 255, 255))
+        text_rect = text.get_rect(center=self.extra_button2.center)
+        self.display.blit(text, text_rect)
+
+        visibility_text = "Fog: ON" if self.limited_visibility else "Fog: OFF"
+        pygame.draw.rect(self.display, (100, 100, 255), self.extra_button3)
+        text = font.render(visibility_text, True, (255, 255, 255))
+        text_rect = text.get_rect(center=self.extra_button3.center)
+        self.display.blit(text, text_rect)
+
+        pygame.draw.rect(self.display, (100, 100, 255), self.extra_button4)
+        text = font.render("Extra 4", True, (255, 255, 255))
+        text_rect = text.get_rect(center=self.extra_button4.center)
+        self.display.blit(text, text_rect)
+
 
         pygame.display.flip()
 
@@ -277,8 +349,16 @@ class Game:
                     self.walls.add(neighbor)
 
     def draw_walls(self, surface):
+        #for x, y in self.walls:
+        #    pygame.draw.rect(surface, (100, 100, 100), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
+        player_tile = (self.character.x // TILESIZE, self.character.y // TILESIZE)
+
         for x, y in self.walls:
-            pygame.draw.rect(surface, (100, 100, 100), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
+            if not self.limited_visibility or (
+                abs(x - player_tile[0]) <= 8 and abs(y - player_tile[1]) <= 8
+            ):
+                pygame.draw.rect(surface, (100, 100, 100), (x * TILESIZE, y * TILESIZE, TILESIZE, TILESIZE))
+        
 
     def toggle_dungeon_colors(self):
         self.brown_mode = not self.brown_mode
@@ -294,3 +374,16 @@ class Game:
                 room.color = room.random_color()
 
         self.corridor_color = color if color else (255, 255, 255)
+
+    def end_game(self, screen):
+        self.running = True   #False
+        self.game_over = True
+
+        font = pygame.font.SysFont(None, 48)
+        text_surface = font.render("Peli päättyi! Paina 'New Map' aloittaaksesi uudelleen.", True, (255, 255, 255))
+        text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
+        screen.blit(text_surface, text_rect)
+        pygame.display.flip()
+        #pygame.time.delay(3000)
+        #pygame.quit()
+        #sys.exit()
