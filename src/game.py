@@ -4,6 +4,7 @@ from dungeon import Dungeon
 from character import Character
 from paths import *
 import sys
+from astar import astar
 
 class Game:
     
@@ -91,6 +92,9 @@ class Game:
                     self.running = False
                 elif self.new_map_button_rect.collidepoint(event.pos):
                     self.dungeon = Dungeon()
+                    for room in self.dungeon.rooms:
+                        room.color = (181, 101, 29)
+                    self.corridor_color = (181, 101, 29)
                     self.create_walls()
                     self.walkable_tiles = self.get_walkable_tiles()
                     start_tile = self.dungeon.room_start_points[0]
@@ -321,6 +325,21 @@ class Game:
         text_rect = text.get_rect(center=self.extra_button4.center)
         self.display.blit(text, text_rect)
 
+        if self.game_over:
+            font_big = pygame.font.SysFont(None, 28)
+            text_surface = font_big.render("Congratulations! You reached the goal. Click 'New Map' to play again.", True, (255, 255, 255))
+            text_rect = text_surface.get_rect(center=(self.display.get_width() // 2, self.display.get_height() // 2))
+            self.display.blit(text_surface, text_rect)
+
+        """ Draw A* distance """
+        start_tile = (self.character.x // TILESIZE, self.character.y // TILESIZE)
+        goal_tile = (self.goal_position[0] // TILESIZE, self.goal_position[1] // TILESIZE)
+        path = astar(start_tile, goal_tile, self.walkable_tiles)
+        distance = len(path) - 1 if path else -1
+        distance_text = font.render(f"Distance to goal: {distance if distance >= 0 else 'N/A'}", True, (255, 255, 255))
+        self.display.blit(distance_text, (WINDOW_WIDTH - 180, WINDOW_HEIGHT + 50, 120, 30))
+
+
 
         pygame.display.flip()
 
@@ -379,8 +398,8 @@ class Game:
         self.running = True   #False
         self.game_over = True
 
-        font = pygame.font.SysFont(None, 48)
-        text_surface = font.render("Peli päättyi! Paina 'New Map' aloittaaksesi uudelleen.", True, (255, 255, 255))
+        font = pygame.font.SysFont(None, 28)
+        text_surface = font.render("Congratulations! You reached the goal. Click 'New Map' to play again.", True, (255, 255, 255))
         text_rect = text_surface.get_rect(center=(screen.get_width() // 2, screen.get_height() // 2))
         screen.blit(text_surface, text_rect)
         pygame.display.flip()
