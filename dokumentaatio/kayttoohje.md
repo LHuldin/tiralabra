@@ -35,7 +35,13 @@ python3 src/main.py
 
 - Ohjelma luo automaattisesti luolaston
 
-- Pelaajaa voi liikuttaa nuolinäppäimillä ja kameraa wasd-näppäimillä
+- Pelin alkaessa näkymä on rajattu 8 ruudun etäisyydelle pelaajasta, näkymän rajauksen voi poistaa käyttöliittymän Fog: ON/OFF näppäimestä.
+
+- Pelinäkymä seuraa oletuksena pelaajaa, seuraamisen voi poistaa käyttöliittymän Follow: ON / OFF näppäimestä, jolloin näkymää voi liikuttaa WASD-näppäimillä.
+
+- Pelaajaa voi liikuttaa nuolinäppäimillä.
+
+- Distance to goal kertoo etäisyyden ruutuina lyhintä mahdollista reittiä pitkin maaliin.
 
 - New Map näppäin generoi uuden luolaston
 
