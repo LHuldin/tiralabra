@@ -13,8 +13,6 @@ class Game:
         self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT + UI_HEIGHT))
         pygame.display.set_caption("Dungeon Runner")
 
-        #self.screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT + UI_HEIGHT))  # ADDED UI HEIGHT TO WINDOW SIZE
-        
         self.surface = pygame.Surface((MAP_WIDTH, MAP_HEIGHT))  # CREATES GAME AREA, LARGER THAN WINDOW
         self.camera = pygame.Rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)  # CAMERA DEFINES VISIBLE AREA
 
@@ -24,7 +22,6 @@ class Game:
 
         self.walls = set()
         self.create_walls()
-        #self.paths = Paths(self.dungeon.rooms)
 
         self.goal_position = self.dungeon.goal_position
         self.game_over = False
@@ -303,7 +300,7 @@ class Game:
         text_rect = text.get_rect(center=self.all_paths_button_rect.center)
         self.display.blit(text, text_rect)           
 
-        pygame.draw.rect(self.display, (255, 255, 0), self.toggle_color_button_rect)
+        pygame.draw.rect(self.display, (100, 100, 255), self.toggle_color_button_rect)
         text = font.render("Color", True, (255, 255, 255))
         text_rect = text.get_rect(center=self.toggle_color_button_rect.center)
         self.display.blit(text, text_rect)  

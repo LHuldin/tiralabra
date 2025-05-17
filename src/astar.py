@@ -2,7 +2,7 @@ import heapq
 
 def astar(start, goal, walkable_tiles):
     """
-    Simple A* pathfinding.
+    A* pathfinding.
     start, goal: (x, y)
     walkable_tiles: set of (x, y)
     Returns: list of (x, y) positions from start to goal.
