@@ -2,7 +2,10 @@
 Ohjelma on toteutettu Python kielellä, ja sen käyttöliittymä hyödyntää Pygame-kirjastoa.
 
 ## Rakenne
-Ohjelma luo luolaston annettujen parametrien pohjalta (config.py tiedosto) luoden satunnaisen mallisia huoneita, joiden väliset käytävät luodaan Bowyer-Watson algoritmin luomien triangulaatioiden pohjalta. Triangulaatioiden kaariin perustuvia huoneiden välisiä käytäviä karsitaan edelleen Primin algoritmin virittän puun avulla.
+Ohjelma luo luolaston annettujen parametrien pohjalta (config.py tiedosto) luoden satunnaisen mallisia huoneita, joiden väliset käytävät luodaan Bowyer-Watson algoritmin luomien triangulaatioiden pohjalta. Triangulaatioiden kaariin perustuvia huoneiden välisiä käytäviä karsitaan edelleen Primin algoritmin virittän puun avulla. Ohjelma käyttää A* algoritmia laskemaan lyhimmän reitin pelaajan maalin välillä.
+
+## Jatkokehitys
+A* luolastojen käytävien piirtämiseen. Käytävien määrän lisääminen niin että kaikkia Primin algoritmin pistamia käytäviä ei poistetakkaan luolastosta. Myös alun perin toteuttavaksi tarkoitettu luolaston kerroksellisuus...
 
 
 ## Kielimallien käyttö
