@@ -43,6 +43,8 @@ python3 src/main.py
 
 - Distance to goal kertoo etäisyyden ruutuina lyhintä mahdollista reittiä pitkin maaliin.
 
+- Pelaajan saavutettua maalin peli pyytää luomaan uuden luolaston New Map napin avulla.
+
 - New Map näppäin generoi uuden luolaston
 
 - Show Grid näppäin näyttää ruudukon kartan yllä
