@@ -17,22 +17,25 @@ class Edge:
     def __hash__(self):
         return hash(frozenset((self.p1, self.p2)))
 
-    #def __repr__(self):
-    #    return f"Edge({self.p1}, {self.p2})"
 
 class Triangle:
     def __init__(self, p1: Point, p2: Point, p3: Point):
         """Represents a triangle defined by three points."""
         self.points = [p1, p2, p3]
         self.edges = [Edge(p1, p2), Edge(p2, p3), Edge(p3, p1)]
-        self.circumcenter, self.radius_sq = self.circumcircle()
+        #self.circumcenter, self.radius_sq = self.circumcircle()
+        circ = self.circumcircle()
+        if circ is not None:
+            self.circumcenter, self.radius_sq = circ
+        else:
+            self.circumcenter, self.radius_sq = None, None
 
     def circumcircle(self) -> Tuple[Point, float]:
         """Calculates the circumcircle center and squared radius of the triangle."""
         a, b, c = self.points
         d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y))
         if d == 0:
-            return Point(0, 0), float('inf')
+            return None #Point(0, 0), float('inf')
 
         ux = (
             (a.x**2 + a.y**2)*(b.y - c.y)
@@ -120,6 +123,9 @@ def calculate_paths(room_points: List[Tuple[float, float]]) -> List[Tuple[Point,
     Returns:
         A list of tuples, each containing two Points that form an edge in the path network.
     """
+    if not room_points:
+        return []
+
     points = [Point(x, y) for x, y in room_points]
     triangles = bowyer_watson(points)
 

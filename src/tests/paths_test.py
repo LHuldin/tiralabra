@@ -52,21 +52,60 @@ class TestPaths(unittest.TestCase):
         filtered = remove_super_triangle(triangles, super_triangle)
         self.assertEqual(len(filtered), 0)
 
+    def test_bowyer_watson_collinear_points(self):
+        """
+        Test Bowyer-Watson algorithm with collinear points.
+
+        Ensures that the algorithm correctly handles the edge case where all points 
+        are collinear (lying on a single straight line). Expected that
+        no triangles are formed, as it's geometrically impossible to create a valid 
+        Delaunay triangulation from collinear points.
+        """
+        points = [Point(0, 0), Point(1, 1), Point(2, 2)]
+        triangles = bowyer_watson(points)
+        self.assertEqual(len(triangles), 0)
+
+    def test_triangle_circumcircle_degenerate(self):
+        """
+        Test that circumcircle() returns None for degenerate (collinear) triangles.
+
+        This ensures the method properly detects when the three points do not form
+        a valid triangle (i.e., they are collinear) and handles it gracefully by 
+        returning None.
+        """
+        a = Point(0, 0)
+        b = Point(1, 1)
+        c = Point(2, 2)  # All points lie on the same line
+        triangle = Triangle(a, b, c)
+        
+        result = triangle.circumcircle()
+        self.assertIsNone(result)
+        
+
     def test_prim_mst(self):
         """Test that Prim's MST returns the correct number of minimal connecting edges."""
         a = Point(0, 0)
-        b = Point(1, 0)
-        c = Point(0, 1)
+        b = Point(2, 0)
+        c = Point(2, 2)
+        d = Point(0, 2)
+        e = Point(1, 1)
+        
     
-        edges = [(a, b), (b, c), (a, c)]
+        edges = [(a, b), (a, d), (a, e),
+            (b, c), (b, e),
+            (c, d), (c, e),
+            (d, e)]
     
-        mst = prim_mst([a, b, c], edges)
+        mst = prim_mst([a, b, c, d, e], edges)
     
-        self.assertEqual(len(mst), 2)
-    
-        expected_edges = {(a, b), (a, c), (b, a), (c, a)}
-        for i in mst:
-            self.assertIn(i, expected_edges)
+        self.assertEqual(len(mst), 4)
+
+        #frozenset ignores edge direction
+        expected_edges = {frozenset((a, e)), frozenset((b, e)), frozenset((c, e)), frozenset((d, e))}
+        
+        mst_edges = {frozenset(edge) for edge in mst}
+        
+        self.assertEqual(mst_edges, expected_edges)
 
     def test_distance(self):
         """Test that distance function returns the correct Euclidean distance."""
@@ -74,3 +113,23 @@ class TestPaths(unittest.TestCase):
         b = Point(3, 4)
         dist = distance(a, b)
         self.assertAlmostEqual(dist, 5.0)
+
+    def test_prim_mst_empty_input(self):
+        """
+        Test that prim_mst returns an empty list when given no points.
+
+        Ensures the function handles empty input gracefully without errors
+        and returns an empty minimum spanning tree.
+        """
+        result = prim_mst([], [])
+        self.assertEqual(result, [])
+
+    def test_calculate_paths_empty_input(self):
+        """
+        Test that calculate_paths returns an empty list when given no room points.
+
+        Ensures graceful handling of empty input and that no exception is raised.
+        """
+        result = calculate_paths([])
+        self.assertEqual(result, [])
+

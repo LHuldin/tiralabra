@@ -320,7 +320,7 @@ class Game:
                 pygame.draw.rect(surface, (100, 100, 100), (x * TILESIZE, y * TILESIZE,
                                                             TILESIZE, TILESIZE))
 
-    def toggle_dungeon_colors(self):
+    def toggle_dungeon_colors(self): # pragma: no cover
         self.brown_mode = not self.brown_mode
         if self.brown_mode:
             color = (181, 101, 29)
