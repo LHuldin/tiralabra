@@ -34,8 +34,16 @@ class Triangle:
         if d == 0:
             return Point(0, 0), float('inf')
 
-        ux = ((A.x**2 + A.y**2)*(B.y - C.y) + (B.x**2 + B.y**2)*(C.y - A.y) + (C.x**2 + C.y**2)*(A.y - B.y)) / d
-        uy = ((A.x**2 + A.y**2)*(C.x - B.x) + (B.x**2 + B.y**2)*(A.x - C.x) + (C.x**2 + C.y**2)*(B.x - A.x)) / d
+        ux = (
+            (A.x**2 + A.y**2)*(B.y - C.y)
+            + (B.x**2 + B.y**2)*(C.y - A.y)
+            + (C.x**2 + C.y**2)*(A.y - B.y)
+            ) / d
+        uy = (
+            (A.x**2 + A.y**2)*(C.x - B.x)
+            + (B.x**2 + B.y**2)*(A.x - C.x)
+            + (C.x**2 + C.y**2)*(B.x - A.x)
+            ) / d
         center = Point(ux, uy)
         radius_sq = (center.x - A.x)**2 + (center.y - A.y)**2
         return center, radius_sq
@@ -164,5 +172,3 @@ def prim_mst(points: List[Point], edges: List[Tuple[Point, Point]]) -> List[Tupl
                     heapq.heappush(edge_queue, (distance(b, a), b, a))
 
     return mst_points
-
-

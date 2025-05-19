@@ -6,7 +6,8 @@ class Room:
     """Represents a room composed of blocks in a dungeon."""
 
     def __init__(self):
-        """Initialize a room with empty blocks, positions, random color, and no starting position."""
+        """Initialize a room with empty blocks, positions,
+        random color, and no starting position."""
         self.blocks = set()
         self.positions = set()
         self.color = self.random_color()
@@ -16,7 +17,8 @@ class Room:
         return (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
 
     def add_block(self, position):
-        """Add a new block to the room at the given position if it's not already occupied and not too close to the map edges."""
+        """Add a new block to the room at the given position if it's not already occupied
+        and not too close to the map edges."""
         x, y = position.x, position.y
         MAX_TILES_X = MAP_WIDTH // TILESIZE
         MAX_TILES_Y = MAP_HEIGHT // TILESIZE
@@ -27,7 +29,6 @@ class Room:
                 self.positions.add(position)
 
 
-        
         """Add a new block to the room at the given position if it's not already occupied."""
         """
         if position not in self.positions:
@@ -53,7 +54,7 @@ class Room:
             borders.extend(block.borders())
         return borders
     """
-    
+
 class Block:
     def __init__(self, position):
         self.position = position
@@ -64,7 +65,7 @@ class Block:
         return [((x, y), (x+1, y)), ((x+1, y), (x+1, y+1)),
                 ((x+1, y+1), (x, y+1)), ((x, y+1), (x, y))]
     """
-    
+
 class Position:
     """Represents a 2D position on the grid."""
 
@@ -74,9 +75,9 @@ class Position:
         self.z = z
 
     def neighbors(self) -> List["Position"]:
-        return [Position(self.x+1, self.y), 
+        return [Position(self.x+1, self.y),
                 Position(self.x-1, self.y),
-                Position(self.x, self.y+1), 
+                Position(self.x, self.y+1),
                 Position(self.x, self.y-1)
             ]
 

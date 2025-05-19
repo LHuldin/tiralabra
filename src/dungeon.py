@@ -19,10 +19,11 @@ class Dungeon:
         self.paths = calculate_paths(self.room_start_points)
         goal_tile = self.room_start_points[-1]
         self.goal_position = (goal_tile[0] * TILESIZE, goal_tile[1] * TILESIZE)
-        
+
 
     def generate_dungeon(self, num_rooms, max_blocks):
-        """Generate rooms randomly positioned and expanded within dungeon boundaries, avoiding overlaps."""
+        """Generate rooms randomly positioned and expanded within dungeon boundaries,
+        avoiding overlaps."""
         attempts = 0
         max_attempts = num_rooms * 10
 
@@ -48,15 +49,13 @@ class Dungeon:
                 room.expand()
 
             if self.room_overlaps(room):
-                continue 
+                continue
 
             self.room_start_points.append((base_x, base_y))
             self.rooms.append(room)
 
         #self.paths = calculate_paths(self.room_start_points)
-        
-        
-        
+
         """Generate simple corridors between rooms based on Delaunay triangulation"""
         self.paths = calculate_paths([(x, y) for (x, y) in self.room_start_points])
 
@@ -71,10 +70,10 @@ class Dungeon:
             for y in range(min(p1.y, p2.y), max(p1.y, p2.y) + 1):
                 corridor.append((p2.x, y))
 
-            # Add all corridor tiles to the dungeon's corridor list  
+            # Add all corridor tiles to the dungeon's corridor list
             self.corridor_positions.extend(corridor)
 
-        
+
 
         """Generate paths using Delaunay triangulation and filter them using Prim's algorithm."""
         points = [Point(x, y) for (x, y) in self.room_start_points]
@@ -105,8 +104,5 @@ class Dungeon:
                     dx = abs(pos1.x - pos2.x)
                     dy = abs(pos1.y - pos2.y)
                     if dx <= 3 and dy <= 3:
-                        return True  
+                        return True
         return False
-
-            
-

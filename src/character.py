@@ -8,7 +8,7 @@ class Character:
         self.y = y
         self.color = color
         self.radius = TILESIZE // 2
-        self.speed = TILESIZE  
+        self.speed = TILESIZE
         self.last_move_time = 0
         base_dir = os.path.dirname(__file__)
         image_path = os.path.join(base_dir, "assets", "hero.png")
