@@ -1,6 +1,6 @@
-import pygame
 import os
-from config import *
+import pygame
+from config import TILESIZE
 
 class Character:
     def __init__(self, x, y, color=(255, 0, 0)):
@@ -13,11 +13,9 @@ class Character:
         base_dir = os.path.dirname(__file__)
         image_path = os.path.join(base_dir, "assets", "hero.png")
         self.image = pygame.image.load(image_path).convert_alpha()
-        #self.image = pygame.image.load("assets/hero.png").convert_alpha()
-        #self.image = pygame.transform.scale(self.image, (2*self.radius, 2*self.radius))
         self.image = pygame.transform.scale(self.image, (TILESIZE, TILESIZE))
 
-    def handle_input(self, keys, walkable_tiles):
+    def handle_input(self, keys, walkable_tiles): # pragma: no cover
         now = pygame.time.get_ticks()
         if now - self.last_move_time < 150:  # ms
             return
@@ -40,7 +38,5 @@ class Character:
             self.x, self.y = new_x, new_y
             self.last_move_time = now
 
-    def draw(self, surface):
+    def draw(self, surface): # pragma: no cover
         surface.blit(self.image, (self.x, self.y))
-        #center = (self.x + self.radius, self.y + self.radius)
-        #pygame.draw.circle(surface, self.color, center, self.radius)

@@ -29,23 +29,23 @@ class Triangle:
 
     def circumcircle(self) -> Tuple[Point, float]:
         """Calculates the circumcircle center and squared radius of the triangle."""
-        A, B, C = self.points
-        d = 2 * (A.x * (B.y - C.y) + B.x * (C.y - A.y) + C.x * (A.y - B.y))
+        a, b, c = self.points
+        d = 2 * (a.x * (b.y - c.y) + b.x * (c.y - a.y) + c.x * (a.y - b.y))
         if d == 0:
             return Point(0, 0), float('inf')
 
         ux = (
-            (A.x**2 + A.y**2)*(B.y - C.y)
-            + (B.x**2 + B.y**2)*(C.y - A.y)
-            + (C.x**2 + C.y**2)*(A.y - B.y)
+            (a.x**2 + a.y**2)*(b.y - c.y)
+            + (b.x**2 + b.y**2)*(c.y - a.y)
+            + (c.x**2 + c.y**2)*(a.y - b.y)
             ) / d
         uy = (
-            (A.x**2 + A.y**2)*(C.x - B.x)
-            + (B.x**2 + B.y**2)*(A.x - C.x)
-            + (C.x**2 + C.y**2)*(B.x - A.x)
+            (a.x**2 + a.y**2)*(c.x - b.x)
+            + (b.x**2 + b.y**2)*(a.x - c.x)
+            + (c.x**2 + c.y**2)*(b.x - a.x)
             ) / d
         center = Point(ux, uy)
-        radius_sq = (center.x - A.x)**2 + (center.y - A.y)**2
+        radius_sq = (center.x - a.x)**2 + (center.y - a.y)**2
         return center, radius_sq
 
     def contains_point_in_circumcircle(self, point: Point) -> bool:
@@ -161,7 +161,7 @@ def prim_mst(points: List[Point], edges: List[Tuple[Point, Point]]) -> List[Tupl
             heapq.heappush(edge_queue, (distance(start, other), start, other))
 
     while edge_queue and len(connected) < len(points):
-        cost, p1, p2 = heapq.heappop(edge_queue)
+        _, p1, p2 = heapq.heappop(edge_queue)
         if p2 not in connected:
             connected.add(p2)
             mst_points.append((p1, p2))

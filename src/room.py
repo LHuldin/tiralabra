@@ -1,6 +1,6 @@
-from config import TILESIZE, MAP_WIDTH, MAP_HEIGHT
 import random
 from typing import Set, Tuple, Optional, List
+from config import TILESIZE, MAP_WIDTH, MAP_HEIGHT
 
 class Room:
     """Represents a room composed of blocks in a dungeon."""
@@ -20,21 +20,12 @@ class Room:
         """Add a new block to the room at the given position if it's not already occupied
         and not too close to the map edges."""
         x, y = position.x, position.y
-        MAX_TILES_X = MAP_WIDTH // TILESIZE
-        MAX_TILES_Y = MAP_HEIGHT // TILESIZE
-        #if 1 <= x < MAP_WIDTH - 1 and 1 <= y < MAP_HEIGHT - 1:
-        if 1 <= x < MAX_TILES_X - 1 and 1 <= y < MAX_TILES_Y - 1:
+        max_tiles_x = MAP_WIDTH // TILESIZE
+        max_tiles_y = MAP_HEIGHT // TILESIZE
+        if 1 <= x < max_tiles_x - 1 and 1 <= y < max_tiles_y - 1:
             if position not in self.positions:
                 self.blocks.add(Block(position))
                 self.positions.add(position)
-
-
-        """Add a new block to the room at the given position if it's not already occupied."""
-        """
-        if position not in self.positions:
-            self.blocks.add(Block(position))
-            self.positions.add(position)
-        """
 
     def expand(self):
         """Expand the room by adding a block at a randomly selected neighboring position."""
@@ -46,25 +37,11 @@ class Room:
         if candidates:
             self.add_block(random.choice(list(candidates)))
 
-    """
-
-    def all_borders(self):
-        borders = []
-        for block in self.blocks:
-            borders.extend(block.borders())
-        return borders
-    """
 
 class Block:
     def __init__(self, position):
         self.position = position
 
-    """
-    def borders(self):
-        x, y = self.position.x, self.position.y
-        return [((x, y), (x+1, y)), ((x+1, y), (x+1, y+1)),
-                ((x+1, y+1), (x, y+1)), ((x, y+1), (x, y))]
-    """
 
 class Position:
     """Represents a 2D position on the grid."""
@@ -86,20 +63,3 @@ class Position:
 
     def __hash__(self):
         return hash((self.x, self.y, self.z))
-
-    """
-    def __init__(self, x, y):
-        self.x, self.y = x, y
-
-    
-    def neighbors(self):
-        return [Position(self.x+1, self.y), Position(self.x-1, self.y),
-                Position(self.x, self.y+1), Position(self.x, self.y-1)]
-    
-
-    def __eq__(self, other):
-        return isinstance(other, Position) and self.x == other.x and self.y == other.y
-
-    def __hash__(self):
-        return hash((self.x, self.y))
-    """

@@ -1,8 +1,9 @@
-from config import *
-from room import *
-from paths import *
 import random
-from typing import List, Tuple
+#from typing import List, Tuple
+from config import ROOMS, BLOCKS, TILESIZE, MAP_HEIGHT, MAP_WIDTH
+from room import Room, Position
+from paths import calculate_paths, prim_mst, Point
+
 
 class Dungeon:
     """Represents a dungeon composed of multiple rooms and paths."""
@@ -54,9 +55,7 @@ class Dungeon:
             self.room_start_points.append((base_x, base_y))
             self.rooms.append(room)
 
-        #self.paths = calculate_paths(self.room_start_points)
-
-        """Generate simple corridors between rooms based on Delaunay triangulation"""
+        #Generate simple corridors between rooms based on Delaunay triangulation
         self.paths = calculate_paths([(x, y) for (x, y) in self.room_start_points])
 
         for p1, p2 in self.paths:
@@ -75,12 +74,12 @@ class Dungeon:
 
 
 
-        """Generate paths using Delaunay triangulation and filter them using Prim's algorithm."""
+        #Generate paths using Delaunay triangulation and filter them using Prim's algorithm.
         points = [Point(x, y) for (x, y) in self.room_start_points]
         edges = calculate_paths(self.room_start_points)
         self.paths_mst = prim_mst(points, edges)
 
-        """Create corridors between points in the MST."""
+        #Create corridors between points in the MST.
         for p1, p2 in self.paths_mst:
             corridor = []
 

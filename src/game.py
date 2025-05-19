@@ -11,7 +11,7 @@ class Game:
         self.display = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT + UI_HEIGHT))
         pygame.display.set_caption("Dungeon Runner")
 
-        """Surface creates game area, camera defines visible area"""
+        #Surface creates game area, camera defines visible area
         self.surface = pygame.Surface((MAP_WIDTH, MAP_HEIGHT))
         self.camera = pygame.Rect(0, 0, WINDOW_WIDTH, WINDOW_HEIGHT)
 
@@ -33,7 +33,6 @@ class Game:
         self.extra_button3 = pygame.Rect(300, WINDOW_HEIGHT + 50, 120, 30)
         self.extra_button4 = pygame.Rect(440, WINDOW_HEIGHT + 50, 120, 30)
 
-        #self.show_paths = False
         self.path_display_mode = 0  # 0 = none, 1 = triangulation, 2 = MST
         self.show_all_paths = False
         self.show_grid = False
@@ -55,7 +54,7 @@ class Game:
 
 
 
-    def run(self):
+    def run(self): # pragma: no cover
         """Runs the main game loop.
 
         Continuously handles events and updates the game state
@@ -68,7 +67,7 @@ class Game:
             #pygame.display.flip()
             self.clock.tick(FPS)
 
-    def handle_events(self):
+    def handle_events(self): # pragma: no cover
         """Processes user input and system events.
 
         Sets the running to False if the user quit the game.
@@ -108,7 +107,7 @@ class Game:
             keys = pygame.key.get_pressed()
             self.character.handle_input(keys, self.walkable_tiles)
 
-    def update(self):
+    def update(self):  # pragma: no cover
         """Updates the game state.
         """
         keys = pygame.key.get_pressed()
@@ -126,14 +125,14 @@ class Game:
             if keys[pygame.K_s]:
                 self.camera.y += camera_speed
 
-        """ Prevent camera from going outside game area """
+        #Prevent camera from going outside game area
         self.camera.x = max(0, min(self.camera.x, self.surface.get_width() - self.camera.width))
         self.camera.y = max(0, min(self.camera.y, self.surface.get_height() - self.camera.height))
 
         if (self.character.x, self.character.y) == self.goal_position:
             self.end_game(self.display)
 
-    def render(self):
+    def render(self):  # pragma: no cover
         """Renders dungeon rooms and blocks onto the display."""
         self.display.fill((0, 0, 0))
         self.surface.fill((30, 30, 30))
@@ -311,7 +310,7 @@ class Game:
                 if neighbor not in occupied:
                     self.walls.add(neighbor)
 
-    def draw_walls(self, surface):
+    def draw_walls(self, surface): # pragma: no cover
         player_tile = (self.character.x // TILESIZE, self.character.y // TILESIZE)
 
         for x, y in self.walls:
@@ -336,7 +335,7 @@ class Game:
 
         self.corridor_color = color if color else (255, 255, 255)
 
-    def end_game(self, screen):
+    def end_game(self, screen): # pragma: no cover
         self.running = True   #False
         self.game_over = True
 
