@@ -5,7 +5,7 @@ Ohjelma on toteutettu Python kielellä, ja sen käyttöliittymä hyödyntää Py
 Ohjelma luo luolaston annettujen parametrien pohjalta (config.py tiedosto) luoden satunnaisen mallisia huoneita, joiden väliset käytävät luodaan Bowyer-Watson algoritmin luomien triangulaatioiden pohjalta. Triangulaatioiden kaariin perustuvia huoneiden välisiä käytäviä karsitaan edelleen Primin algoritmin virittän puun avulla. Ohjelma käyttää A* algoritmia laskemaan lyhimmän reitin pelaajan maalin välillä.
 
 ## Jatkokehitys
-A* luolastojen käytävien piirtämiseen. Käytävien määrän lisääminen niin että kaikkia Primin algoritmin pistamia käytäviä ei poistetakkaan luolastosta. Myös alun perin toteuttavaksi tarkoitettu luolaston kerroksellisuus...
+A* käyttö monipuolisempien ja luonnollisempien käytävien piirtämiseen olisi oletettavasti nopeasti toteutettava lisäominaisuus A* algoritmin ollessa jo osa ohjelmaa. Käytävien määrän lisääminen niin että kaikkia Primin algoritmin pistamia käytäviä ei poistetakkaan luolastosta. Myös alun perin toteuttavaksi tarkoitettu luolaston kerroksellisuus toisi ohjelman käyttöön monipuolisuutta.
 
 
 ## Kielimallien käyttö
