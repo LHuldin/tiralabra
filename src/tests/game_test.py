@@ -18,7 +18,5 @@ class TestGame(unittest.TestCase):
         game = Game()
         self.assertTrue(game.running)
 
-    #def test_hello_world(self):
-    #    self.assertEqual("Hello world", "Hello world")
 
     
