@@ -29,3 +29,5 @@ ChatGPT (4o) on käytetty apuna tiedon etsinässä, selittämään käsitteitä 
 [Vazgriz.com: Procedurally Generated Dungeons](https://vazgriz.com/119/procedurally-generated-dungeons/)
 
 [Emergent blog: Dungeon generation — from simple to complex](https://tiendil.org/en/posts/dungeon-generation-from-simple-to-complex)
+
+[Game Developer: Procedural Dungeon Generation Algorithm](https://www.gamedeveloper.com/programming/procedural-dungeon-generation-algorithm)
