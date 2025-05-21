@@ -1,7 +1,7 @@
 # Testausraportti
 Projektin testauksessa on keskitytty erityisesti algoritmien toteutukseen ja niitä on pyritty testaamaan kattavasti yksikkötesteillä. Käyttöliittymään ja pygameen liittyvät toiminnallisuudet ovat kommentoitu pois testikattavuudesta.
 
-Ohessa lopullinen Coveragen luoma testikattavuus raportti, joka pyrki osoittamaan tarvittavan kattavuuden testien haarautumiskattavuudelle.
+Ohessa lopullinen Coveragen luoma testikattavuus raportti, joka pyrki osoittamaan tarvittavan kattavuuden testien haarautumiskattavuudelle. Tiedost astar.py sisältää A* algoritmin toteutuksen ja paths.py Bowyer-Watson ja Prim algoritmien toteutuksen.
 ![Testikattavuus](https://github.com/LHuldin/tiralabra/raw/main/dokumentaatio/img/Näyttökuva%202025-05-21%20kello%201.35.43.png)
 
 A* algoritmin osalta testataan Manhattan-etäisyyden laskeminen, naapuri ruutujen tarkastaminen ja viiden askeleen pituisen polun rakentaminen. lisäksi testataan algoritmin toimintaa esteettömässä ruudukossa, ruudukossa maaliin ei ole mahdollista päästä ja tilannetta jossa lähtöruutu ja maali ovat sama piste.
