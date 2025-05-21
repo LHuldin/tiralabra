@@ -55,7 +55,7 @@ class Dungeon:
             self.room_start_points.append((base_x, base_y))
             self.rooms.append(room)
 
-        #Generate simple corridors between rooms based on Delaunay triangulation
+        #Generate simple L-shaped corridors between rooms based on Delaunay triangulation
         self.paths = calculate_paths([(x, y) for (x, y) in self.room_start_points])
 
         for p1, p2 in self.paths:
