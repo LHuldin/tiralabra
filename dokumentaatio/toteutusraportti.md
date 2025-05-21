@@ -1,18 +1,22 @@
 # Toteutusraportti
-Ohjelma on toteutettu Python kielellä, ja sen käyttöliittymä hyödyntää Pygame-kirjastoa.
+
+## Toiminta ja käyttöliittymä
+Ohjelma on toteutettu Python kielellä, ja sen käyttöliittymä hyödyntää Pygame-kirjastoa. 
+
+Ohjelma on peli, jossa pelaaja liikuttaa hahmoa satunnaisesti luodussa luolastossa pyrkien löytämään maalin. Vihjeenä maalin sijainnista pelaaja näkee jatkuvasti päivittyvän laskurin joka ilmoittaa lyhimmän etäisyyden sallittuja reittejä pitkin pelaajan ja maalin välillä.
 
 ## Rakenne
 Ohjelma luo luolaston annettujen parametrien pohjalta (config.py tiedosto) luoden satunnaisen mallisia huoneita, joiden väliset käytävät luodaan Bowyer-Watson algoritmin luomien triangulaatioiden pohjalta. Triangulaatioiden kaariin perustuvia huoneiden välisiä käytäviä karsitaan edelleen Primin algoritmin virittän puun avulla. Ohjelma käyttää A* algoritmia laskemaan lyhimmän reitin pelaajan ja maalin välillä ja päivittää tätä tietoa jatkuvasti pelaajan liikkuessa luolastossa.
 
 ## Aikavaativuudet
-Ohjelma käyttää Bowyer–Watson-algoritmia käytävien luomiseen ja Prim’n algoritmia niiden karsimiseen. Bowyer–Watson muodostaa Delaunay-triangulaation, joka yhdistää huoneet kolmioverkoksi keskimäärin ajassa O(n log n) pahimman tapauksen ollessa O(n^2). Tämän jälkeen Prim’n algoritmilla valitaan verkosta lyhin mahdollinen yhdistelmä käytäviä (eli pienin virittävä puu) myös toimii ajassa O(n log n). Kokonaisuudessaan ohjelman aikavaativuus on keskimäärin O(n log n). Pelin suorituskyvyn kannalta tällä ei ole suurta merkitystä kun luolaston luominen tapahtuu ennen varsinaista peli tapahtumaa.
+Ohjelma käyttää Bowyer–Watson-algoritmia käytävien luomiseen ja Prim’n algoritmia niiden karsimiseen. Bowyer–Watson muodostaa Delaunay-triangulaation, joka yhdistää huoneet kolmioverkoksi keskimäärin ajassa O(n log n) pahimman tapauksen ollessa kuitenkin O(n^2). Tämän jälkeen Primin algoritmilla valitaan verkosta lyhin mahdollinen yhdistelmä käytäviä (eli pienin virittävä puu) myös toimii ajassa O(n log n). Jatkuvaan etäisyyden päivittämiseen käytettävän A* algoritmin aika vaativuus on pahimman tapauksen osalta O(n).    
 
 ## Jatkokehitys
 A* käyttö monipuolisempien ja luonnollisempien käytävien piirtämiseen olisi oletettavasti nopeasti toteutettava lisäominaisuus A* algoritmin ollessa jo osa ohjelmaa. Käytävien määrän lisääminen niin että kaikkia Primin algoritmin pistamia käytäviä ei poistetakkaan luolastosta. Myös alun perin toteuttavaksi tarkoitettu luolaston kerroksellisuus toisi ohjelman käyttöön monipuolisuutta. Koodin rakenteen osalta paths.py tiedoston jakaminen jotta Bowyer-watson ja Primin algoritmi olisivat erillisissä tiedostoissa.
 
 
 ## Kielimallien käyttö
-ChatGPT (4o) on käytetty apuna tiedon etsinässä, selittämään käsitteitä sekä erityisesti selittämään pygamen toiminnallisuuksia.
+ChatGPT (4o ja 4.5) on käytetty apuna tiedon etsinässä, virheiden etsinnässä, selittämään käsitteitä sekä erityisesti selittämään pygamen toiminnallisuuksia.
 
 
 
