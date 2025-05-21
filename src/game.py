@@ -64,7 +64,6 @@ class Game:
             self.handle_events()
             self.update()
             self.render()
-            #pygame.display.flip()
             self.clock.tick(FPS)
 
     def handle_events(self): # pragma: no cover
@@ -260,11 +259,6 @@ class Game:
         pygame.draw.rect(self.display, (100, 100, 255), self.extra_button3)
         text = font.render(visibility_text, True, (255, 255, 255))
         text_rect = text.get_rect(center=self.extra_button3.center)
-        self.display.blit(text, text_rect)
-
-        pygame.draw.rect(self.display, (100, 100, 255), self.extra_button4)
-        text = font.render("Extra 4", True, (255, 255, 255))
-        text_rect = text.get_rect(center=self.extra_button4.center)
         self.display.blit(text, text_rect)
 
         if self.game_over:
