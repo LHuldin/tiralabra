@@ -79,7 +79,7 @@ class Dungeon:
         edges = calculate_paths(self.room_start_points)
         self.paths_mst = prim_mst(points, edges)
 
-        #Create corridors between points in the MST.
+        #Create simple L-shaped corridors between points in the MST.
         for p1, p2 in self.paths_mst:
             corridor = []
 
