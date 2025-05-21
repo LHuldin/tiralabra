@@ -31,7 +31,7 @@ poetry shell
 python3 src/main.py
 ```
 
-## Ohjelman käyttö (tämänhetkiset toiminnallisuudet)
+## Ohjelman käyttö
 
 - Ohjelma luo automaattisesti luolaston
 
