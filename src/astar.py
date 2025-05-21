@@ -28,13 +28,16 @@ def astar(start, goal, walkable_tiles):
     return []
 
 def manhattan(a, b):
+    """ Calculates manhattan distance"""
     return abs(a[0] - b[0]) + abs(a[1] - b[1])
 
 def neighbors(pos, walkable):
+    """Returns all walkable neighboring tiles from a given coordinate"""
     steps = [(-1,0), (1,0), (0,-1), (0,1)]
     return [(pos[0]+dx, pos[1]+dy) for dx, dy in steps if (pos[0]+dx, pos[1]+dy) in walkable]
 
 def build_path(came_from, current):
+    """Reconstructs the path from the start to the end coordinate"""
     path = [current]
     while current in came_from:
         current = came_from[current]

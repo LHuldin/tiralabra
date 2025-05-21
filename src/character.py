@@ -4,6 +4,8 @@ from config import TILESIZE
 
 class Character:
     def __init__(self, x, y, color=(255, 0, 0)):
+        """Initializes a new Character."""
+
         self.x = x
         self.y = y
         self.color = color
